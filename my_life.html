@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ef">
+<title>My Life</title>
+<style>
+:root{--bg:#f8f4f2;--card:#fffdfc;--ink:#302a2b;--muted:#817779;--pink:#d9aeb6;--rose:#855d66;--line:#eee4e2;--green:#6d806b;--lav:#777a9b;--shadow:0 8px 28px #4933350b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:92px}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:auto;padding:22px 17px 30px}.top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 22px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:750}.top h1{font-size:27px;letter-spacing:-.04em;margin:5px 0 0}.date{font-size:12px;color:var(--muted);text-align:right}.hero{background:linear-gradient(135deg,#f0dfe1,#f8ece9 60%,#eee8ef);border-radius:25px;padding:23px 21px;margin-bottom:18px;box-shadow:var(--shadow)}.hero .small{font-size:12px;color:#75575c}.hero .amount{font-size:34px;font-weight:760;letter-spacing:-.05em;margin:6px 0}.hero p{margin:0;color:#75575c;font-size:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 22px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:16px;box-shadow:var(--shadow)}.stat .label{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:20px;margin-top:8px;letter-spacing:-.03em}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:23px 2px 11px}.sectionhead h2{font-size:18px;margin:0;letter-spacing:-.03em}.hint{font-size:12px;color:var(--muted)}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.quick button{border:1px solid var(--line);background:var(--card);border-radius:17px;padding:14px 7px;color:var(--ink);box-shadow:var(--shadow)}.quick .emoji{font-size:22px;display:block;margin-bottom:7px}.quick span:last-child{font-size:12px;font-weight:650}.nav{position:fixed;bottom:0;left:0;right:0;background:#fffdfcf2;backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:8px 7px calc(8px + env(safe-area-inset-bottom))}.nav button{border:0;background:transparent;color:var(--muted);flex:1;max-width:150px;padding:8px 2px;border-radius:13px;font-size:11px}.nav button b{display:block;font-size:19px;margin-bottom:3px}.nav button.active{color:var(--rose);background:#f6e9eb}.view{display:none}.view.active{display:block}.panel{margin-bottom:11px}.panel h3{margin:0 0 10px;font-size:15px}.rowline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}.rowline:first-of-type{border-top:0}.muted{color:var(--muted);font-size:12px}.money{font-weight:750}.btn{border:0;border-radius:12px;background:var(--rose);color:white;padding:11px 14px;font-weight:650}.btn.light{background:#f4e7e9;color:var(--rose)}.btn.small{padding:7px 10px;font-size:12px}.form{display:grid;gap:10px;margin-top:12px}.form input,.form select,.form textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;color:var(--ink);min-width:0}.form label{font-size:12px;color:var(--muted);display:grid;gap:6px}.form .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}.form button{width:100%}.item-title{font-weight:700}.pill{display:inline-block;border-radius:30px;padding:4px 8px;background:#f5e9eb;color:var(--rose);font-size:11px}.pill.green{background:#e9f0e6;color:#4e6a4a}.check{width:18px;height:18px;accent-color:var(--rose)}.task{display:flex;gap:10px;align-items:center}.task.done .item-title{text-decoration:line-through;color:#9c9193}.empty{text-align:center;padding:24px 10px;color:var(--muted);font-size:13px}.empty b{display:block;font-size:25px;margin-bottom:8px}.foot{text-align:center;color:#9c9092;font-size:11px;margin:22px 0 0}.danger{color:#a24e57;background:none;border:0;font-size:12px}.link{color:var(--rose);overflow-wrap:anywhere;font-size:12px}a{color:var(--rose)}@media(min-width:600px){.app{padding-top:30px}.hero{padding:28px}.stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="eyebrow">your personal dashboard</div><h1>My Life <span>♡</span></h1></div><div class="date" id="today"></div></header>
+<section class="hero"><div class="small">YOUR MONEY AT A GLANCE</div><div class="amount" id="available">$0.00</div><p>Estimated cash left after logged expenses and bills</p></section>
+<div class="stats">
+ <div class="stat"><div class="label">Starting cash</div><strong id="startingStat">$0</strong></div>
+ <div class="stat"><div class="label">Income logged</div><strong id="incomeStat">$0</strong></div>
+ <div class="stat"><div class="label">Expenses logged</div><strong id="expenseStat">$0</strong></div>
+ <div class="stat"><div class="label">Saved apartments</div><strong id="apartmentStat">0</strong></div>
+</div>
+<div class="view active" id="homeView">
+ <div class="sectionhead"><h2>Quick add</h2><span class="hint">Little steps add up</span></div>
+ <div class="quick">
+  <button onclick="showView('moneyView');document.getElementById('transactionForm').scrollIntoView({behavior:'smooth'})"><span class="emoji">💸</span><span>Transaction</span></button>
+  <button onclick="showView('homeView');document.getElementById('taskForm').scrollIntoView({behavior:'smooth'})"><span class="emoji">📝</span><span>Task</span></button>
+  <button onclick="showView('apartmentView')"><span class="emoji">🏡</span><span>Apartment</span></button>
+ </div>
+ <div class="sectionhead"><h2>Today's priorities</h2><span class="hint" id="taskCount">0 left</span></div>
+ <div class="panel" id="todayTasks"></div>
+ <div class="sectionhead"><h2>Next steps</h2></div>
+ <div class="panel"><div class="rowline"><div><div class="item-title">Set your starting cash</div><div class="muted">Add how much money you have today.</div></div><button class="btn light small" onclick="showView('moneyView')">Set up</button></div><div class="rowline"><div><div class="item-title">Save apartment options</div><div class="muted">Keep rent and move-in costs together.</div></div><button class="btn light small" onclick="showView('apartmentView')">Explore</button></div></div>
+</div>
+<div class="view" id="moneyView">
+ <div class="sectionhead"><h2>Money tracker</h2><span class="hint">Manual tracking</span></div>
+ <div class="panel"><h3>Starting cash</h3><div class="muted">Enter the cash you have right now. This is your starting point.</div><form class="form" id="startingForm"><label>Starting cash ($)<input id="startingCash" type="number" min="0" step=".01" placeholder="e.g. 850" required></label><button class="btn">Save starting cash</button></form></div>
+ <div class="panel"><h3>Add income or expense</h3><form class="form" id="transactionForm"><div class="two"><label>Type<select id="txType"><option value="expense">Expense</option><option value="income">Income</option></select></label><label>Amount ($)<input id="txAmount" type="number" min=".01" step=".01" placeholder="25.00" required></label></div><label>Description<input id="txName" maxlength="70" placeholder="Gas, paycheck, groceries..." required></label><div class="two"><label>Date<input id="txDate" type="date" required></label><label>Category<select id="txCategory"><option>General</option><option>Housing</option><option>Food</option><option>Gas/transport</option><option>Paycheck</option><option>Bills</option><option>Fun</option><option>Savings</option></select></label></div><button class="btn">Add transaction</button></form></div>
+ <div class="sectionhead"><h2>Recent transactions</h2><span class="hint" id="txCount">0 items</span></div><div class="panel" id="transactions"></div>
+</div>
+<div class="view" id="apartmentView">
+ <div class="sectionhead"><h2>Apartment shortlist</h2><span class="hint">Compare your options</span></div>
+ <div class="panel"><h3>Save a place</h3><form class="form" id="apartmentForm"><label>Apartment / property name<input id="aptName" maxlength="80" placeholder="Property name" required></label><div class="two"><label>Town<input id="aptTown" maxlength="60" placeholder="e.g. Mooresville"></label><label>Monthly rent ($)<input id="aptRent" type="number" min="0" step="1" placeholder="950" required></label></div><div class="two"><label>Move-in cost ($)<input id="aptMove" type="number" min="0" step="1" placeholder="1500"></label><label>Laundry<select id="aptLaundry"><option>Unknown</option><option>In-unit</option><option>On-site</option><option>None</option></select></label></div><label>Listing link<input id="aptLink" type="url" placeholder="https://..."></label><label>Notes<textarea id="aptNotes" rows="2" maxlength="300" placeholder="Pet policy, utilities, things to ask..."></textarea></label><button class="btn">Save apartment</button></form></div>
+ <div class="sectionhead"><h2>Saved places</h2><span class="hint" id="aptCount">0 places</span></div><div id="apartments"></div>
+</div>
+<div class="view" id="plannerView">
+ <div class="sectionhead"><h2>Daily planner</h2><span class="hint" id="plannerDate"></span></div>
+ <div class="panel"><h3>Add a task</h3><form class="form" id="taskForm"><label>What do you need to do?<input id="taskName" maxlength="100" placeholder="Call about an apartment..." required></label><div class="two"><label>Due date<input id="taskDate" type="date" required></label><label>Priority<select id="taskPriority"><option>Normal</option><option>High</option><option>Low</option></select></label></div><button class="btn">Add to planner</button></form></div>
+ <div class="sectionhead"><h2>All tasks</h2><span class="hint" id="allTaskCount"></span></div><div id="allTasks"></div>
+</div>
+<div class="view" id="settingsView">
+ <div class="sectionhead"><h2>Settings & privacy</h2></div>
+ <div class="panel"><h3>Your data stays on this device</h3><p class="muted">This first version saves information in this browser on this iPhone. It does not connect to your bank or send your entries to a server. Clearing Safari website data or changing devices may erase your records.</p><button class="btn light" onclick="exportData()">Export my data (JSON)</button></div>
+ <div class="panel"><h3>Reset app</h3><p class="muted">Export your data first if you want to keep a backup. Reset permanently clears this app's saved entries on this browser.</p><button class="danger" onclick="resetData()">Delete all app data</button></div>
+ <div class="panel"><h3>First version</h3><div class="muted">My Life · Personal organizer · No paid integrations</div></div>
+</div>
+<div class="foot">Made for your next chapter ✿ · Your entries are stored locally</div>
+</div>
+<nav class="nav">
+ <button class="active" data-view="homeView" onclick="showView('homeView',this)"><b>⌂</b>Home</button>
+ <button data-view="moneyView" onclick="showView('moneyView',this)"><b>＄</b>Money</button>
+ <button data-view="apartmentView" onclick="showView('apartmentView',this)"><b>⌂</b>Apartments</button>
+ <button data-view="plannerView" onclick="showView('plannerView',this)"><b>☷</b>Planner</button>
+ <button data-view="settingsView" onclick="showView('settingsView',this)"><b>⚙</b>Settings</button>
+</nav>
+<script>
+const KEY='my-life-v1';
+let state={startingCash:0,transactions:[],apartments:[],tasks:[]};
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&typeof saved==='object')state={...state,...saved}}catch(e){}
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(n)||0);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function showView(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(btn)btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});render()}
+function totals(){let inc=0,exp=0;state.transactions.forEach(t=>{if(t.type==='income')inc+=+t.amount;else exp+=+t.amount});return{inc,exp,available:+state.startingCash+inc-exp}}
+function render(){
+ const t=totals();$('available').textContent=money(t.available);$('startingStat').textContent=money(state.startingCash);$('incomeStat').textContent=money(t.inc);$('expenseStat').textContent=money(t.exp);$('apartmentStat').textContent=state.apartments.length;
+ const tasks=[...state.tasks].sort((a,b)=>a.date.localeCompare(b.date));const open=tasks.filter(x=>!x.done);$('taskCount').textContent=`${open.length} left`;$('todayTasks').innerHTML=open.filter(x=>x.date<=today()).length?open.filter(x=>x.date<=today()).slice(0,5).map(taskHtml).join(''):'<div class="empty"><b>☀️</b>No tasks due today. Add a task to get organized.</div>';
+ $('transactions').innerHTML=state.transactions.length?[...state.transactions].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30).map(x=>`<div class="rowline"><div><div class="item-title">${esc(x.name)}</div><div class="muted">${esc(x.date)} · ${esc(x.category)}</div></div><div style="text-align:right"><div class="money" style="color:${x.type==='income'?'#587a54':'inherit'}">${x.type==='income'?'+':'−'}${money(x.amount)}</div><button class="danger" onclick="removeItem('transactions','${x.id}')">Remove</button></div></div>`).join(''):'<div class="empty">Your transactions will show up here.</div>';$('txCount').textContent=`${state.transactions.length} items`;
+ $('apartments').innerHTML=state.apartments.length?[...state.apartments].sort((a,b)=>a.rent-b.rent).map(a=>`<div class="panel"><div style="display:flex;justify-content:space-between;gap:10px"><div><div class="item-title">${esc(a.name)}</div><div class="muted">${esc(a.town||'Town not added')} · ${esc(a.laundry)}</div></div><div class="money">${money(a.rent)}<div class="muted">/ month</div></div></div><div class="rowline"><div class="muted">Estimated move-in cost</div><strong>${money(a.move)}</strong></div>${a.link?`<a class="link" href="${esc(a.link)}" target="_blank" rel="noopener">Open listing ↗</a>`:''}${a.notes?`<p class="muted">${esc(a.notes)}</p>`:''}<div style="text-align:right;margin-top:8px"><button class="danger" onclick="removeItem('apartments','${a.id}')">Remove apartment</button></div></div>`).join(''):'<div class="panel empty"><b>🏡</b>No apartments saved yet. Add listings to compare rent and move-in costs.</div>';$('aptCount').textContent=`${state.apartments.length} places`;
+ $('allTasks').innerHTML=tasks.length?tasks.map(taskHtml).join(''):'<div class="panel empty"><b>📝</b>No tasks yet. Add your first task above.</div>';$('allTaskCount').textContent=`${open.length} open`;
+ $('plannerDate').textContent=new Date().toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+}
+function taskHtml(x){return `<div class="rowline task ${x.done?'done':''}"><input class="check" type="checkbox" ${x.done?'checked':''} onchange="toggleTask('${x.id}',this.checked)"><div style="flex:1;min-width:0"><div class="item-title">${esc(x.name)}</div><div class="muted">${esc(x.date)} · ${esc(x.priority)} priority</div></div><button class="danger" onclick="removeItem('tasks','${x.id}')">×</button></div>`}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function removeItem(list,key){state[list]=state[list].filter(x=>x.id!==key);save()}
+function toggleTask(key,done){const t=state.tasks.find(x=>x.id===key);if(t)t.done=done;save()}
+$('today').textContent=new Date().toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
+$('txDate').value=today();$('taskDate').value=today();
+$('startingForm').addEventListener('submit',e=>{e.preventDefault();state.startingCash=Math.max(0,Number($('startingCash').value)||0);save();alert('Starting cash saved!')});
+$('transactionForm').addEventListener('submit',e=>{e.preventDefault();state.transactions.push({id:id(),type:$('txType').value,amount:Number($('txAmount').value),name:$('txName').value.trim(),date:$('txDate').value||today(),category:$('txCategory').value});e.target.reset();$('txDate').value=today();save();alert('Transaction added!')});
+$('apartmentForm').addEventListener('submit',e=>{e.preventDefault();state.apartments.push({id:id(),name:$('aptName').value.trim(),town:$('aptTown').value.trim(),rent:Number($('aptRent').value)||0,move:Number($('aptMove').value)||0,laundry:$('aptLaundry').value,link:$('aptLink').value.trim(),notes:$('aptNotes').value.trim()});e.target.reset();save();alert('Apartment saved!')});
+$('taskForm').addEventListener('submit',e=>{e.preventDefault();state.tasks.push({id:id(),name:$('taskName').value.trim(),date:$('taskDate').value||today(),priority:$('taskPriority').value,done:false});e.target.reset();$('taskDate').value=today();save();alert('Task added!')});
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='my-life-hq-backup.json';a.click();URL.revokeObjectURL(url)}
+function resetData(){if(confirm('Delete all My Life data from this browser? This cannot be undone.')){localStorage.removeItem(KEY);state={startingCash:0,transactions:[],apartments:[],tasks:[]};render();$('startingCash').value='';alert('App data cleared.')}}
+$('startingCash').value=state.startingCash||'';render();
+</script>
+</body></html>
